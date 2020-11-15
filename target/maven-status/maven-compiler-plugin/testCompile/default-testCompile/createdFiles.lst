@@ -1,0 +1,5 @@
+com/javalanguagezone/interviewtwitter/InterviewTwitterApplicationTests.class
+com/javalanguagezone/interviewtwitter/service/UserServiceTest.class
+com/javalanguagezone/interviewtwitter/controller/RestIntegrationTest.class
+com/javalanguagezone/interviewtwitter/controller/TweetControllerIntegrationTest.class
+com/javalanguagezone/interviewtwitter/controller/UserControllerIntegrationTest.class
