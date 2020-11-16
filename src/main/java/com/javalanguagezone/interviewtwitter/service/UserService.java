@@ -3,6 +3,8 @@ package com.javalanguagezone.interviewtwitter.service;
 import com.javalanguagezone.interviewtwitter.domain.User;
 import com.javalanguagezone.interviewtwitter.repository.UserRepository;
 import com.javalanguagezone.interviewtwitter.service.dto.UserDTO;
+import com.javalanguagezone.interviewtwitter.service.dto.UserOverviewDTO;
+import lombok.Getter;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -45,11 +47,33 @@ public class UserService implements UserDetailsService {
     return convertUsersToDTOs(user.getFollowers());
   }
 
+  @Transactional
+  public UserOverviewDTO getUserOverview(String username) {
+    User user = getUser(username);
+    if(user == null)
+      throw new UnknownUsernameException(username);
+    return convertUserToUserOverviewDTO(user);
+  }
+
   private User getUser(String username) {
     return userRepository.findOneByUsername(username);
   }
 
   private List<UserDTO> convertUsersToDTOs(Set<User> users) {
     return users.stream().map(UserDTO::new).collect(toList());
+  }
+
+  private UserOverviewDTO convertUserToUserOverviewDTO(User user) {
+    return new UserOverviewDTO(user, user.getTweets().size(), user.getFollowers().size(), user.getFollowing().size()); //TODO add mapper
+  }
+
+  public static class UnknownUsernameException extends RuntimeException {
+    @Getter
+    private String username;
+
+    private UnknownUsernameException(String username) {
+      super(username);
+      this.username = username;
+    }
   }
 }

@@ -2,6 +2,8 @@ package com.javalanguagezone.interviewtwitter.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,8 +19,8 @@ import static lombok.AccessLevel.PRIVATE;
 @Getter
 @Setter
 @NoArgsConstructor(access = PRIVATE)
-@ToString(exclude = {"following", "followers"})
-@EqualsAndHashCode(exclude = {"following", "followers"})
+@ToString(exclude = {"following", "followers", "tweets"})
+@EqualsAndHashCode(exclude = {"following", "followers", "tweets"})
 public class User implements UserDetails {
   public static final List<SimpleGrantedAuthority> AUTHORITIES = singletonList(new SimpleGrantedAuthority("USER"));
 
@@ -36,6 +38,11 @@ public class User implements UserDetails {
   @JsonIgnore
   @ManyToMany(mappedBy = "following")
   private Set<User> followers = new HashSet<>();
+
+  @JsonIgnore
+  @LazyCollection(LazyCollectionOption.EXTRA)
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "author")
+  private Set<Tweet> tweets;
 
   @JsonIgnore
   private String password;

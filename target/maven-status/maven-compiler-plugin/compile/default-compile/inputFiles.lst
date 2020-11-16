@@ -8,6 +8,7 @@
 /home/merjem/Documents/tacta task/interview-twitter-master/interview-twitter-rest/src/main/java/com/javalanguagezone/interviewtwitter/domain/User.java
 /home/merjem/Documents/tacta task/interview-twitter-master/interview-twitter-rest/src/main/java/com/javalanguagezone/interviewtwitter/controller/UserController.java
 /home/merjem/Documents/tacta task/interview-twitter-master/interview-twitter-rest/src/main/java/com/javalanguagezone/interviewtwitter/config/SecurityConfiguration.java
+/home/merjem/Documents/tacta task/interview-twitter-master/interview-twitter-rest/src/main/java/com/javalanguagezone/interviewtwitter/service/dto/UserOverviewDTO.java
 /home/merjem/Documents/tacta task/interview-twitter-master/interview-twitter-rest/src/main/java/com/javalanguagezone/interviewtwitter/service/dto/TweetDTO.java
 /home/merjem/Documents/tacta task/interview-twitter-master/interview-twitter-rest/src/main/java/com/javalanguagezone/interviewtwitter/repository/UserRepository.java
 /home/merjem/Documents/tacta task/interview-twitter-master/interview-twitter-rest/src/main/java/com/javalanguagezone/interviewtwitter/service/dto/UserDTO.java
