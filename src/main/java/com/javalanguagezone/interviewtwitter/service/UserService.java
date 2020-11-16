@@ -52,7 +52,7 @@ public class UserService implements UserDetailsService {
     User user = getUser(username);
     if(user == null)
       throw new UnknownUsernameException(username);
-    return convertUserToUserOverviewDTO(user);
+    return new UserOverviewDTO(user);
   }
 
   private User getUser(String username) {
@@ -61,10 +61,6 @@ public class UserService implements UserDetailsService {
 
   private List<UserDTO> convertUsersToDTOs(Set<User> users) {
     return users.stream().map(UserDTO::new).collect(toList());
-  }
-
-  private UserOverviewDTO convertUserToUserOverviewDTO(User user) {
-    return new UserOverviewDTO(user, user.getTweets().size(), user.getFollowers().size(), user.getFollowing().size()); //TODO add mapper
   }
 
   public static class UnknownUsernameException extends RuntimeException {
