@@ -2,9 +2,6 @@ package com.javalanguagezone.interviewtwitter.service.dto;
 
 import com.javalanguagezone.interviewtwitter.domain.User;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-import static lombok.AccessLevel.PRIVATE;
 
 @Getter
 public class UserOverviewDTO extends UserDTO{
