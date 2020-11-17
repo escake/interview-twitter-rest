@@ -31,6 +31,10 @@ public class User implements UserDetails {
   @Column(unique = true)
   private String username;
 
+  @Column(nullable = false)
+  private String fullName;
+
+
   @JsonIgnore
   @ManyToMany
   private Set<User> following = new HashSet<>();
@@ -47,8 +51,9 @@ public class User implements UserDetails {
   @JsonIgnore
   private String password;
 
-  public User(String username, String password) {
+  public User(String username, String fullName, String password) {
     this.username = username;
+    this.fullName = fullName;
     this.password = password;
   }
 
