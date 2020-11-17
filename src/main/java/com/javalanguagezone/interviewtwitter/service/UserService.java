@@ -4,6 +4,7 @@ import com.javalanguagezone.interviewtwitter.domain.User;
 import com.javalanguagezone.interviewtwitter.repository.UserRepository;
 import com.javalanguagezone.interviewtwitter.service.dto.UserDTO;
 import com.javalanguagezone.interviewtwitter.service.dto.UserOverviewDTO;
+import com.javalanguagezone.interviewtwitter.service.exception.UnknownUsernameException;
 import lombok.Getter;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -63,13 +64,4 @@ public class UserService implements UserDetailsService {
     return users.stream().map(UserDTO::new).collect(toList());
   }
 
-  public static class UnknownUsernameException extends RuntimeException {
-    @Getter
-    private String username;
-
-    private UnknownUsernameException(String username) {
-      super(username);
-      this.username = username;
-    }
-  }
 }

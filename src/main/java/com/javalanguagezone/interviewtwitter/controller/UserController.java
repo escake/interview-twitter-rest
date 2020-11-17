@@ -5,6 +5,7 @@ import com.javalanguagezone.interviewtwitter.service.TweetService;
 import com.javalanguagezone.interviewtwitter.service.UserService;
 import com.javalanguagezone.interviewtwitter.service.dto.UserDTO;
 import com.javalanguagezone.interviewtwitter.service.dto.UserOverviewDTO;
+import com.javalanguagezone.interviewtwitter.service.exception.UnknownUsernameException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +42,7 @@ public class UserController {
 
   @ExceptionHandler
   @ResponseStatus(BAD_REQUEST)
-  public ErrorMessage handleUnknownUsernameException(UserService.UnknownUsernameException e){
+  public ErrorMessage handleUnknownUsernameException(UnknownUsernameException e){
     log.warn("", e);
     return new ErrorMessage(String.format("Unknown user '%s'", e.getUsername()));
   }

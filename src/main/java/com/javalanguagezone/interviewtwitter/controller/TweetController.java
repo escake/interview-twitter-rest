@@ -2,13 +2,11 @@ package com.javalanguagezone.interviewtwitter.controller;
 
 import com.javalanguagezone.interviewtwitter.controller.dto.ErrorMessage;
 import com.javalanguagezone.interviewtwitter.service.TweetService;
-import com.javalanguagezone.interviewtwitter.service.TweetService.InvalidTweetException;
-import com.javalanguagezone.interviewtwitter.service.TweetService.UnknownUsernameException;
 import com.javalanguagezone.interviewtwitter.service.dto.TweetDTO;
+import com.javalanguagezone.interviewtwitter.service.exception.InvalidTweetException;
+import com.javalanguagezone.interviewtwitter.service.exception.UnknownUsernameException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.constraints.Size;
 import java.security.Principal;
 import java.util.Collection;
 

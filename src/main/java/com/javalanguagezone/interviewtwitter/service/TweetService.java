@@ -5,6 +5,8 @@ import com.javalanguagezone.interviewtwitter.domain.User;
 import com.javalanguagezone.interviewtwitter.repository.TweetRepository;
 import com.javalanguagezone.interviewtwitter.repository.UserRepository;
 import com.javalanguagezone.interviewtwitter.service.dto.TweetDTO;
+import com.javalanguagezone.interviewtwitter.service.exception.InvalidTweetException;
+import com.javalanguagezone.interviewtwitter.service.exception.UnknownUsernameException;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
 
@@ -59,20 +61,4 @@ public class TweetService {
     throw new UnknownUsernameException(username);
   }
 
-  public static class UnknownUsernameException extends RuntimeException {
-    @Getter
-    private String username;
-
-    private UnknownUsernameException(String username) {
-      super(username);
-      this.username = username;
-    }
-  }
-
-  public static class InvalidTweetException extends RuntimeException {
-
-    private InvalidTweetException(String tweet) {
-      super("'" +  tweet + "'");
-    }
-  }
 }
