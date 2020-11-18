@@ -61,6 +61,10 @@ public class User implements UserDetails {
     following.addAll(Arrays.asList(users));
   }
 
+  public boolean isValid() {
+    return username != null && fullName != null && password != null;
+  }
+
   @Override
   @JsonIgnore
   public Collection<? extends GrantedAuthority> getAuthorities() {

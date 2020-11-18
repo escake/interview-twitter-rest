@@ -1,11 +1,12 @@
 package com.javalanguagezone.interviewtwitter.service;
 
+import com.javalanguagezone.interviewtwitter.controller.dto.UserRegistrationDTO;
 import com.javalanguagezone.interviewtwitter.domain.User;
 import com.javalanguagezone.interviewtwitter.repository.UserRepository;
 import com.javalanguagezone.interviewtwitter.service.dto.UserDTO;
 import com.javalanguagezone.interviewtwitter.service.dto.UserOverviewDTO;
 import com.javalanguagezone.interviewtwitter.service.exception.UnknownUsernameException;
-import lombok.Getter;
+import com.javalanguagezone.interviewtwitter.service.exception.UsernameTakenException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -54,6 +55,16 @@ public class UserService implements UserDetailsService {
     if(user == null)
       throw new UnknownUsernameException(username);
     return new UserOverviewDTO(user);
+  }
+
+  @Transactional
+  public void register(UserRegistrationDTO userRegistrationDTO) {
+    if(getUser(userRegistrationDTO.getUsername()) != null)
+      throw new UsernameTakenException(userRegistrationDTO.getUsername());
+    User user = new User(userRegistrationDTO.getUsername(), userRegistrationDTO.getFullName(), userRegistrationDTO.getPassword());
+    if(!user.isValid())
+      throw new RuntimeException(); //todo InvalidUserException
+    userRepository.save(user);
   }
 
   private User getUser(String username) {

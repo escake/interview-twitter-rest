@@ -1,6 +1,7 @@
 com/javalanguagezone/interviewtwitter/service/TweetService.class
 com/javalanguagezone/interviewtwitter/repository/TweetRepository.class
 com/javalanguagezone/interviewtwitter/domain/Tweet.class
+com/javalanguagezone/interviewtwitter/controller/dto/UserRegistrationDTO.class
 com/javalanguagezone/interviewtwitter/service/exception/UnknownUsernameException.class
 com/javalanguagezone/interviewtwitter/repository/UserRepository.class
 com/javalanguagezone/interviewtwitter/controller/dto/ErrorMessage.class
@@ -9,9 +10,11 @@ com/javalanguagezone/interviewtwitter/InterviewTwitterApplication$BootstrapBitco
 com/javalanguagezone/interviewtwitter/service/UserService.class
 com/javalanguagezone/interviewtwitter/service/dto/UserDTO.class
 com/javalanguagezone/interviewtwitter/service/exception/InvalidTweetException.class
+com/javalanguagezone/interviewtwitter/controller/AuthController.class
 com/javalanguagezone/interviewtwitter/controller/TweetController.class
 com/javalanguagezone/interviewtwitter/domain/User.class
 com/javalanguagezone/interviewtwitter/service/dto/UserOverviewDTO.class
 com/javalanguagezone/interviewtwitter/controller/UserController.class
+com/javalanguagezone/interviewtwitter/service/exception/UsernameTakenException.class
 com/javalanguagezone/interviewtwitter/service/dto/TweetDTO.class
 com/javalanguagezone/interviewtwitter/config/SecurityConfiguration.class
