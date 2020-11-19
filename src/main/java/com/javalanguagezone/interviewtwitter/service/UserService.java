@@ -1,5 +1,7 @@
 package com.javalanguagezone.interviewtwitter.service;
 
+import com.javalanguagezone.interviewtwitter.controller.dto.LoginSucessDTO;
+import com.javalanguagezone.interviewtwitter.controller.dto.UserLoginDTO;
 import com.javalanguagezone.interviewtwitter.controller.dto.UserRegistrationDTO;
 import com.javalanguagezone.interviewtwitter.domain.User;
 import com.javalanguagezone.interviewtwitter.repository.UserRepository;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -65,6 +68,21 @@ public class UserService implements UserDetailsService {
     if(!user.isValid())
       throw new RuntimeException(); //todo InvalidUserException
     userRepository.save(user);
+  }
+
+  @Transactional
+  public LoginSucessDTO login(UserLoginDTO userLoginDTO) {
+    if(getUser(userLoginDTO.getUsername()) == null)
+      throw new UnknownUsernameException(userLoginDTO.getUsername());
+    // todo InvalidPasswordException
+
+    String token = generateToken(userLoginDTO.getUsername(), userLoginDTO.getPassword());
+    return new LoginSucessDTO(token, userLoginDTO.getUsername());
+  }
+
+  private String generateToken(String username, String password) {
+    //todo: replace with jwt
+    return Base64.getEncoder().encodeToString(String.format("%s:%s", username, password).getBytes());
   }
 
   private User getUser(String username) {
